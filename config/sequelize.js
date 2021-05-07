@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 module.exports = function() {
     const controller = {};
 
-    const getConfig = () => {
+    const getConfig = (dialect) => {
         let config = {
             host: 'localhost',
             database: 'databasename',
@@ -17,27 +17,27 @@ module.exports = function() {
             config.database = 'admin';
             config.user = 'admin';
             config.pass = 'admin';
-            console.log('Database connected as development...');
+            console.log(`${dialect} - Database connected as development...`);
         } else if (env === 'test') {
             config.host = process.env.HOST || '127.0.0.1';
             config.database = process.env.DATABASE ||'admin';
             config.user = process.env.USER ||'admin';
             config.pass = process.env.PASS ||'admin';
-            console.log('Database connected as test...');
+            console.log(`${dialect} - Database connected as development...`);
         } else if (env === 'production') {
             config.host = process.env.HOST || '127.0.0.1';
             config.database = process.env.DATABASE ||'admin';
             config.user = process.env.USER ||'admin';
             config.pass = process.env.PASS ||'admin';
             config.logging = false;
-            console.log('Database connected as production...');
+            console.log(`${dialect} - Database connected as development...`);
         }
         return config;
     };
     
 
     controller.getConnection = function(dialect) {
-        let config = getConfig();
+        let config = getConfig(dialect);
         let connection = new Sequelize(config.database, config.user, config.pass, 
             {
                 host: config.host,
