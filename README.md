@@ -24,3 +24,9 @@
 Macapá: @asd3d213AD1!@cas0
 
 Varejão: &23safd@as23WA213e
+
+Obs: deve ser inserido no header, ex:
+
+headers: {
+    key: @asd3d213AD1!@cas0
+}
